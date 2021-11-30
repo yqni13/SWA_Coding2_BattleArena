@@ -1,0 +1,23 @@
+30.11.2021, 20:26:42:955 | call instance by Log
+30.11.2021, 20:26:45:277 | call instance by Player 1
+30.11.2021, 20:26:46:373 | call instance by Player 2
+30.11.2021, 20:26:53:959 | call instance by Player 1
+30.11.2021, 20:26:56:024 | call instance by Player 2
+30.11.2021, 20:26:57:988 | call instance by Player 1
+30.11.2021, 20:26:58:966 | call instance by Player 2
+30.11.2021, 20:27:02:657 | call instance by Player 1
+30.11.2021, 20:27:03:996 | call instance by Player 2
+30.11.2021, 20:27:09:351 | call instance by Player 1
+30.11.2021, 20:27:10:044 | call instance by Player 2
+30.11.2021, 20:27:17:301 | call instance by Player 1
+30.11.2021, 20:27:18:454 | call instance by Player 2
+30.11.2021, 20:27:20:225 | call instance by Player 1
+30.11.2021, 20:27:20:630 | call instance by Player 2
+30.11.2021, 20:27:26:867 | call instance by Player 1
+30.11.2021, 20:27:28:538 | call instance by Player 2
+30.11.2021, 20:27:29:847 | call instance by Player 1
+30.11.2021, 20:27:30:446 | call instance by Player 2
+30.11.2021, 20:27:33:902 | call instance by Player 1
+30.11.2021, 20:27:36:933 | call instance by Player 2
+30.11.2021, 20:27:37:604 | call instance by Player 1
+30.11.2021, 20:27:39:048 | call instance by Player 2

@@ -6,7 +6,8 @@ namespace BattleArena.Pawn
 {
     public class Hero
     {
-       
+        
+
         private readonly IEquipment weapon;
         private int lastKeyInput;
         private List<Goblin> goblins = new List<Goblin>();

@@ -1,10 +1,12 @@
 ﻿using BattleArena.Pawn;
+using BattleArena.Singleton;
 using System;
 
 namespace BattleArena
 {
     public class UserIO
     {
+
         public void PrintFightMenu(string name)
         {
             Console.WriteLine("+--------------------------------------->  ");

@@ -1,5 +1,6 @@
 ﻿using BattleArena.Items;
 using BattleArena.Pawn;
+using BattleArena.Singleton;
 using System;
 
 namespace BattleArena
@@ -8,6 +9,8 @@ namespace BattleArena
     {
         static void Main(string[] args)
         {
+            Log log = Log.GetInstanceStatic;
+
             UserIO userinteraction = new UserIO();
 
             Random randomNumberGenerator = new Random();
@@ -15,6 +18,7 @@ namespace BattleArena
                 new Hero("Player 2", new CynradBow(randomNumberGenerator)) };
 
             bool run = true;
+
 
             while (run)
             {
@@ -40,7 +44,8 @@ namespace BattleArena
                                 // exit game
                                 run = false;
                                 userinteraction.ExitGame();
-                                return ;
+                                log.PrintLogFile();
+                                return;
                             case 1:
                                 if (currentHero.Name == "Player 1")
                                 {
@@ -87,6 +92,8 @@ namespace BattleArena
                     {
                         currentHero.useGoblins(playerList[0]);
                     }
+
+                    log.LogMetaData(currentHero.Name);
                 }
 
                 // end condition

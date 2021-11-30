@@ -5,6 +5,7 @@ namespace BattleArena.Items
 {
     public class CynradBow : IEquipment
     {
+        
         private const int percentageVariable = 2;
         private const int strenght = 10;
 
@@ -15,6 +16,7 @@ namespace BattleArena.Items
         public CynradBow(Random randomNumberGenerator)
         {
             this.randomNumberGenerator = randomNumberGenerator;
+
         }
 
         public void Use(Hero other)
