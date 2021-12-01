@@ -1,5 +1,4 @@
 ﻿using BattleArena.Items;
-using BattleArena.Items.OldVersion;
 using BattleArena.Pawn;
 using BattleArena.Singleton;
 using System;
@@ -10,18 +9,28 @@ namespace BattleArena
     {
         static void Main(string[] args)
         {
-            //Log log = Log.GetInstanceStatic;
+            Log log = Log.GetInstanceStatic;
+            Equip equipment = new Equip();
 
             UserIO userinteraction = new UserIO();
 
-            // TO-DO: implement random choice for weapon?
-
             Random randomNumberGenerator = new Random();
-            Hero[] playerList = { new Hero("Player 1", new ObjectAdapterLatharSword(new Items.OldVersion.LatharSword(randomNumberGenerator))),
-                new Hero("Player 2", new CynradBow(randomNumberGenerator)) };
 
+
+            /// generate/initialize playerslist by loop to be flexible for number of players
+            /// this way name is assigned before weapon initialization (necessary for logging)
+            /// choice of weapon outsourced to class Equip
+            int numberOfHeroes = 2;
+            Hero[] playerList = new Hero[numberOfHeroes];
+            for (int i = 0; i < numberOfHeroes; ++i)
+            {
+                string player = $"Player {i}";
+                log.GetPlayerName(player);
+                playerList[i] = new Hero(player, equipment.EquipHero(randomNumberGenerator)); 
+            }
+
+            
             bool run = true;
-
 
             while (run)
             {
@@ -30,7 +39,7 @@ namespace BattleArena
 
                 foreach (Hero currentHero in playerList)
                 {
-
+                    log.GetPlayerName(currentHero.Name);        // additional information for logging
                     bool action = false;
                     do
                     {
@@ -94,9 +103,7 @@ namespace BattleArena
                     else
                     {
                         currentHero.useGoblins(playerList[0]);
-                    }
-
-                    //log.LogMetaData(currentHero.Name);
+                    }                    
                 }
 
                 // end condition

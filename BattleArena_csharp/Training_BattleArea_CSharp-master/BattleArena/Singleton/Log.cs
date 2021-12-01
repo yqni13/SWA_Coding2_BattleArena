@@ -3,20 +3,22 @@ using System.IO;
 
 namespace BattleArena.Singleton
 {
-    /*The Singleton is called an Anti-Pattern for different reasons, like:
-        - hard to unit test and breaking the single responsibility principle
-        - usage as global variables, thus a disadvantage for encapsulation
-        - limiting options of multi-threading with single object
-        - decreasing performance with multiple Singletons
-        - limitations in extending Singletons
-      Furthermore, in a garbage collected system, Singletons can become very hard to handle in regards
-      to memory management. As long as the Singleton class does not consume time extraordinarly 
-      or has big time side-effects, the static is to prefer against lazy initialization.*/
+    /// The Singleton is called an Anti-Pattern for different reasons, like:
+    ///    - hard to unit test and breaking the single responsibility principle
+    ///    - usage as global variables, thus a disadvantage for encapsulation
+    ///    - limiting options of multi-threading with single object
+    ///    - decreasing performance with multiple Singletons
+    ///    - limitations in extending Singletons
+    /// Furthermore, in a garbage collected system, Singletons can become very hard to handle in regards
+    /// to memory management. As long as the Singleton class does not consume time extraordinarly 
+    /// or has big time side-effects, the static is to prefer against lazy initialization.
+    
     public class Log
     {
-        private Log() { LogMetaData("Log"); }
+        private Log() { LogMetaData("Log", "LogInstance"); }
 
-        private string _logData = "";       // member in Singleton which is used only for this purpose
+        private string _logData = "";       // use string to log data until generating logfile each program run
+        private string _player = "";        // save name of hero (player) to assign action each log line
         
 
         // lazy initialization
@@ -46,14 +48,36 @@ namespace BattleArena.Singleton
             }
         }
 
-        public void LogMetaData(string _object)
+        public void LogMetaData(string _instance, string category)
+        {            
+            DateTimeOffset timestamp = DateTime.UtcNow.AddHours(1);     // AddHours() to adapt current timezone
+
+            if (category == "CreatureInstance")
+            {
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} gets creature {_instance}\n";
+            }
+            else if (category == "FightMethod")
+            {
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses to {_instance}!\n";
+            }
+            else if (category == "WeaponInstance")
+            {
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses weapon {_instance}\n";
+            }
+            else
+            {
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | Initialization call of {_instance}\n";
+            }
+        }
+
+        public void GetPlayerName(string name)
         {
-            DateTimeOffset timestamp = (DateTimeOffset)DateTime.UtcNow.AddHours(1);     // AddHours() to adapt current timezone
-            _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | call instance by {_object}\n";
+            this._player = name;
         }
 
         public void PrintLogFile()
         {
+            /// don't move the .exe!!!
             StreamWriter logfile = new StreamWriter("../../../Singleton/LogFile" + DateTime.UtcNow.AddHours(1).ToString("yyyyMMdd_HH-mm-ss") + "." + "txt", true);
             logfile.Write(_logData);
             logfile.Close();            

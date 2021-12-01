@@ -3,7 +3,7 @@
 namespace BattleArena.Pawn
 {
     internal class Goblin
-    {
+    {        
         private const int percentageVariable = 3;
 
         private int strength;

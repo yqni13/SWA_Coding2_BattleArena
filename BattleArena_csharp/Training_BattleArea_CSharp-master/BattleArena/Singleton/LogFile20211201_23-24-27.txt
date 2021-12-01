@@ -1,0 +1,15 @@
+01.12.2021, 23:24:03:199 | Initialization call of Log
+01.12.2021, 23:24:03:207 | hero: Player 0 chooses weapon CynradBow
+01.12.2021, 23:24:03:214 | hero: Player 1 chooses weapon LatharSword
+01.12.2021, 23:24:04:278 | hero: Player 0 chooses to fight!
+01.12.2021, 23:24:04:609 | hero: Player 1 chooses to fight!
+01.12.2021, 23:24:05:515 | hero: Player 0 gets creature Leprechaun
+01.12.2021, 23:24:05:945 | hero: Player 1 chooses to fight!
+01.12.2021, 23:24:09:002 | hero: Player 0 gets creature Leprechaun
+01.12.2021, 23:24:10:920 | hero: Player 1 chooses to fight!
+01.12.2021, 23:24:13:960 | hero: Player 0 chooses to fight!
+01.12.2021, 23:24:20:816 | hero: Player 1 gets creature Leprechaun
+01.12.2021, 23:24:23:386 | hero: Player 0 gets creature BigGoblin
+01.12.2021, 23:24:24:497 | hero: Player 1 chooses to fight!
+01.12.2021, 23:24:25:749 | hero: Player 0 chooses to fight!
+01.12.2021, 23:24:26:101 | hero: Player 1 chooses to fight!

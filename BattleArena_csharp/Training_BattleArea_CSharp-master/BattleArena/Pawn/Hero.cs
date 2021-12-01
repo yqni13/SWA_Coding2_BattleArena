@@ -7,6 +7,8 @@ namespace BattleArena.Pawn
 {
     public class Hero
     {
+        Log log = Log.GetInstanceStatic;
+
         private readonly IEquipment weapon;
         private int lastKeyInput;
         private List<Goblin> goblins = new List<Goblin>();
@@ -30,6 +32,7 @@ namespace BattleArena.Pawn
         public bool Action(Hero other)
         {
             this.weapon.Use(other);
+            log.LogMetaData("fight", "FightMethod");
             return true;
         }
 
@@ -57,6 +60,7 @@ namespace BattleArena.Pawn
             {
                 this.Coins -= 2;
                 this.Leprechaun++;
+                log.LogMetaData("Leprechaun", "CreatureInstance");
                 return true;
             }
             return false;
@@ -68,6 +72,7 @@ namespace BattleArena.Pawn
             {
                 this.Coins -= 1;
                 this.goblins.Add(new Goblin(1, randomNumberGenerator));
+                log.LogMetaData("TinyGoblin", "CreatureInstance");
                 return true;
             }
             return false;
@@ -79,6 +84,7 @@ namespace BattleArena.Pawn
             {
                 this.Coins -= 3;
                 this.goblins.Add(new Goblin(2, randomNumberGenerator));
+                log.LogMetaData("MediumGoblin", "CreatureInstance");
                 return true;
             }
             return false;
@@ -90,6 +96,7 @@ namespace BattleArena.Pawn
             {
                 this.Coins -= 6;
                 this.goblins.Add(new Goblin(3, randomNumberGenerator));
+                log.LogMetaData("BigGoblin", "CreatureInstance");
                 return true;
             }
             return false;
