@@ -36,13 +36,13 @@ namespace BattleArena.Singleton
 
 
         // static initialization
-        private static Log _staticLog = null;
+        private static Log _staticLog = new Log();
 
         public static Log GetInstanceStatic
         {
             get
             {
-                return _staticLog = new Log();
+                return _staticLog;
             }
         }
 

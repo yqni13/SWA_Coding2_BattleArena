@@ -1,4 +1,5 @@
 ﻿using BattleArena.Items;
+using BattleArena.Items.OldVersion;
 using BattleArena.Pawn;
 using BattleArena.Singleton;
 using System;
@@ -9,12 +10,14 @@ namespace BattleArena
     {
         static void Main(string[] args)
         {
-            Log log = Log.GetInstanceStatic;
+            //Log log = Log.GetInstanceStatic;
 
             UserIO userinteraction = new UserIO();
 
+            // TO-DO: implement random choice for weapon?
+
             Random randomNumberGenerator = new Random();
-            Hero[] playerList = { new Hero("Player 1", new CynradBow(randomNumberGenerator)),
+            Hero[] playerList = { new Hero("Player 1", new ObjectAdapterLatharSword(new Items.OldVersion.LatharSword(randomNumberGenerator))),
                 new Hero("Player 2", new CynradBow(randomNumberGenerator)) };
 
             bool run = true;
@@ -93,7 +96,7 @@ namespace BattleArena
                         currentHero.useGoblins(playerList[0]);
                     }
 
-                    log.LogMetaData(currentHero.Name);
+                    //log.LogMetaData(currentHero.Name);
                 }
 
                 // end condition

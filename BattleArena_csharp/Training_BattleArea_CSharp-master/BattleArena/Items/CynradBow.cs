@@ -26,5 +26,6 @@ namespace BattleArena.Items
                 other.ReduceHealth(strenght);
             }
         }
+         
     }
 }

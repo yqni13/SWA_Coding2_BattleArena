@@ -1,4 +1,5 @@
 ﻿using BattleArena.Items;
+using BattleArena.Singleton;
 using System;
 using System.Collections.Generic;
 
@@ -6,8 +7,6 @@ namespace BattleArena.Pawn
 {
     public class Hero
     {
-        
-
         private readonly IEquipment weapon;
         private int lastKeyInput;
         private List<Goblin> goblins = new List<Goblin>();
@@ -25,6 +24,7 @@ namespace BattleArena.Pawn
             this.weapon = equipment;
 
             this.lastKeyInput = -1;
+            
         }
 
         public bool Action(Hero other)
