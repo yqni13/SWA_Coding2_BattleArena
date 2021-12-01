@@ -4,8 +4,17 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BattleArena.Items.OldVersion
-{
-       
+{   
+    /// The used Object Adapter Pattern holds an instance of adaptee (composition as adaptee object inside adapter) meanwhile the Class Adapter Pattern
+    /// uses inheritance instead of composition which requires multiple inheritance for implementation (fits C++).
+    /// 
+    /// Advantages Object Adapter:
+    /// - no multiple inheritance necessary (most programing languages)
+    /// - more flexibilty and re-usability
+    /// 
+    /// Advantages Class Adapter:
+    /// - easily override behaviour of adaptee / doesn't need to wrap up any objects
+
     public class ObjectAdapterLatharSword : IEquipment
     {
         private LatharSword instance;
@@ -21,5 +30,4 @@ namespace BattleArena.Items.OldVersion
             opponent.ReduceHealth(damage);
         }
     }
-    
 }
