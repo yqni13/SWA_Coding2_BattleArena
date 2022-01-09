@@ -8,16 +8,16 @@ namespace BattleArena.Items
     {
         Log log = Log.GetInstanceStatic;
 
-        private const int percentageVariable = 2;
-        private const int strenght = 10;
+        private const int _percentageVariable = 2;
+        private const int _strenght = 10;
 
-        private readonly Random randomNumberGenerator;
+        private readonly Random _randomNumberGenerator;
 
         public string Name { get; } = "Cynrad Bow";
 
         public CynradBow(Random randomNumberGenerator)
         {
-            this.randomNumberGenerator = randomNumberGenerator;
+            this._randomNumberGenerator = randomNumberGenerator;
             log.LogMetaData("CynradBow", "WeaponInstance");
         }
 
@@ -27,9 +27,9 @@ namespace BattleArena.Items
 
         public void Use(Hero other)
         {
-            if(this.randomNumberGenerator.Next(10) < percentageVariable)
+            if(this._randomNumberGenerator.Next(10) < _percentageVariable)
             {
-                other.ReduceHealth(strenght);
+                other.ReduceHealth(_strenght);
             }
         }
          

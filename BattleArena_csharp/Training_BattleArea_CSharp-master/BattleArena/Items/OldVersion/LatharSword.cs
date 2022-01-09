@@ -7,20 +7,20 @@ namespace BattleArena.Items.OldVersion
     {
         Log log = Log.GetInstanceStatic;
 
-        private const int percentageVariable = 4;
-        private const int strenght = 5;
+        private const int _percentageVariable = 4;
+        private const int _strenght = 5;
 
-        private readonly Random randomNumberGenerator;
+        private readonly Random _randomNumberGenerator;
 
         public LatharSword(Random randomNumberGenerator)
         {
-            this.randomNumberGenerator = randomNumberGenerator;
+            this._randomNumberGenerator = randomNumberGenerator;
             log.LogMetaData("LatharSword", "WeaponInstance");
         }
 
         public int Hit()
         {
-            return this.randomNumberGenerator.Next(10) < percentageVariable ? strenght : 0;
+            return this._randomNumberGenerator.Next(10) < _percentageVariable ? _strenght : 0;
         }
     }
 }

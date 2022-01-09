@@ -9,13 +9,13 @@ namespace BattleArena.Pawn
     {
         Log log = Log.GetInstanceStatic;
 
-        private readonly IEquipment weapon;
-        private int lastKeyInput;
-        private List<Goblin> goblins = new List<Goblin>();
+        private readonly IEquipment _weapon;
+        private int _lastKeyInput;
+        private List<Goblin> _goblins = new List<Goblin>();
 
         public int Health { get; private set; } = 100;
         public int Coins { get; private set; } = 1;
-        public int NumberOfGoblins => this.goblins.Count;
+        public int NumberOfGoblins => this._goblins.Count;
         public int Leprechaun { get; private set; } = 0;
 
         public string Name { get; private set; }
@@ -23,15 +23,15 @@ namespace BattleArena.Pawn
         public Hero(string name, IEquipment equipment)
         {
             this.Name = name;
-            this.weapon = equipment;
+            this._weapon = equipment;
 
-            this.lastKeyInput = -1;
+            this._lastKeyInput = -1;
             
         }
 
         public bool Action(Hero other)
         {
-            this.weapon.Use(other);
+            this._weapon.Use(other);
             log.LogMetaData("fight", "FightMethod");
             return true;
         }
@@ -41,9 +41,9 @@ namespace BattleArena.Pawn
             this.Coins += this.Leprechaun + 1;
         }
 
-        public void useGoblins(Hero other)
+        public void UseGoblins(Hero other)
         {
-            foreach (Goblin tmpGoblin in this.goblins)
+            foreach (Goblin tmpGoblin in this._goblins)
             {
                 tmpGoblin.Action(other);
             }
@@ -71,7 +71,7 @@ namespace BattleArena.Pawn
             if (this.Coins > 0)
             {
                 this.Coins -= 1;
-                this.goblins.Add(new Goblin(1, randomNumberGenerator));
+                this._goblins.Add(new Goblin(1, randomNumberGenerator));
                 log.LogMetaData("TinyGoblin", "CreatureInstance");
                 return true;
             }
@@ -83,7 +83,7 @@ namespace BattleArena.Pawn
             if (this.Coins > 2)
             {
                 this.Coins -= 3;
-                this.goblins.Add(new Goblin(2, randomNumberGenerator));
+                this._goblins.Add(new Goblin(2, randomNumberGenerator));
                 log.LogMetaData("MediumGoblin", "CreatureInstance");
                 return true;
             }
@@ -95,7 +95,7 @@ namespace BattleArena.Pawn
             if (this.Coins > 5)
             {
                 this.Coins -= 6;
-                this.goblins.Add(new Goblin(3, randomNumberGenerator));
+                this._goblins.Add(new Goblin(3, randomNumberGenerator));
                 log.LogMetaData("BigGoblin", "CreatureInstance");
                 return true;
             }
@@ -104,7 +104,7 @@ namespace BattleArena.Pawn
 
         public override string ToString()
         {
-            return $"Name: {this.Name}\nCoins {this.Coins}\nLeprechaun: {this.Leprechaun}\nLastKeyInput: {this.lastKeyInput}\n\n";
+            return $"Name: {this.Name}\nCoins {this.Coins}\nLeprechaun: {this.Leprechaun}\nLastKeyInput: {this._lastKeyInput}\n\n";
         }
     }
 }

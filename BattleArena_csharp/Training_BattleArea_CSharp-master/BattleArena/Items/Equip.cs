@@ -7,7 +7,7 @@ namespace BattleArena.Items
     {
         public object IEquipment { get; private set; }
 
-        public enum EquipmentItem
+        public enum EEquipmentItem
         {
             LatharSword = 0,
             CynradBow = 1
@@ -20,7 +20,7 @@ namespace BattleArena.Items
                 case (0):
                      return new CynradBow(randomNumberGenerator);
                 case (1):
-                    return new ObjectAdapterLatharSword(new Items.OldVersion.LatharSword(randomNumberGenerator));
+                    return new ObjectAdapterLatharSword(new LatharSword(randomNumberGenerator));
                 default:
                     return new CynradBow(randomNumberGenerator);
             }

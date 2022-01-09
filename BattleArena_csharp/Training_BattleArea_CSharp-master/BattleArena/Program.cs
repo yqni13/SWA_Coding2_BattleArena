@@ -1,6 +1,7 @@
 ﻿using BattleArena.Items;
 using BattleArena.Pawn;
 using BattleArena.Singleton;
+using BattleArena.Observer;
 using System;
 
 namespace BattleArena
@@ -11,22 +12,24 @@ namespace BattleArena
         {
             Log log = Log.GetInstanceStatic;
             Equip equipment = new Equip();
+            Achievements subscriber = new Achievements();
 
             UserIO userinteraction = new UserIO();
 
             Random randomNumberGenerator = new Random();
 
-
             /// generate/initialize playerslist by loop to be flexible for number of players
-            /// this way name is assigned before weapon initialization (necessary for logging)
+            /// this way player names are assigned before weapon initialization (necessary for logging)
             /// choice of weapon outsourced to class Equip
+            /// player can be subscribed with their health values
             int numberOfHeroes = 2;
             Hero[] playerList = new Hero[numberOfHeroes];
             for (int i = 0; i < numberOfHeroes; ++i)
             {
                 string player = $"Player {i}";
                 log.GetPlayerName(player);
-                playerList[i] = new Hero(player, equipment.EquipHero(randomNumberGenerator)); 
+                playerList[i] = new Hero(player, equipment.EquipHero(randomNumberGenerator));
+                subscriber.Subscribe(player, playerList[i].Health);
             }
 
             
@@ -98,12 +101,15 @@ namespace BattleArena
 
                     if (currentHero.Name == "Player 1")
                     {
-                        currentHero.useGoblins(playerList[1]);
+                        currentHero.UseGoblins(playerList[1]);
                     }
                     else
                     {
-                        currentHero.useGoblins(playerList[0]);
-                    }                    
+                        currentHero.UseGoblins(playerList[0]);
+                    }
+                    
+                    /// get damage to notify and log data
+                    subscriber.GetEnumCompareValue(currentHero.Name, currentHero.Health);
                 }
 
                 // end condition
@@ -116,7 +122,7 @@ namespace BattleArena
                 {
                     userinteraction.EndGame(playerList[1].Name);
                     run = false;
-                }
+                }                
             }
         }
     }

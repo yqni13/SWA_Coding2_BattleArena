@@ -17,16 +17,16 @@ namespace BattleArena.Items.OldVersion
 
     public class ObjectAdapterLatharSword : IEquipment
     {
-        private LatharSword instance;
+        private LatharSword _instance;
 
         public ObjectAdapterLatharSword(LatharSword instance)
         {
-            this.instance = instance;
+            this._instance = instance;
         }
 
         public void Use(Hero opponent)
         {
-            int damage = this.instance.Hit();
+            int damage = this._instance.Hit();
             opponent.ReduceHealth(damage);
         }
     }

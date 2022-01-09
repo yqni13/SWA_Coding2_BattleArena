@@ -21,7 +21,7 @@ namespace BattleArena.Singleton
         private string _player = "";        // save name of hero (player) to assign action each log line
         
 
-        // lazy initialization
+        // lazy initialization; not used
         private Lazy<Log> _lazyLog = null;
 
         public Lazy<Log> GetInstanceLazy
@@ -38,35 +38,39 @@ namespace BattleArena.Singleton
 
 
         // static initialization
-        private static Log _staticLog = new Log();
+        private static Log s_staticLog = new Log();
 
         public static Log GetInstanceStatic
         {
             get
             {
-                return _staticLog;
+                return s_staticLog;
             }
         }
 
-        public void LogMetaData(string _instance, string category)
+        public void LogMetaData(string msg, string category)
         {            
             DateTimeOffset timestamp = DateTime.UtcNow.AddHours(1);     // AddHours() to adapt current timezone
 
             if (category == "CreatureInstance")
             {
-                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} gets creature {_instance}\n";
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} gets creature {msg}\n";
             }
             else if (category == "FightMethod")
             {
-                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses to {_instance}!\n";
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses to {msg}!\n";
             }
             else if (category == "WeaponInstance")
             {
-                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses weapon {_instance}\n";
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | hero: {_player} chooses weapon {msg}\n";
+            }
+            else if (category == "Achievement")
+            {
+                _logData += $"Achievement: a player did {msg}\n";
             }
             else
             {
-                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | Initialization call of {_instance}\n";
+                _logData += timestamp.ToString("dd.MM.yyyy, HH:mm:ss:fff") + $" | Initialization call of {msg}\n";
             }
         }
 
@@ -77,6 +81,9 @@ namespace BattleArena.Singleton
 
         public void PrintLogFile()
         {
+            /// by saving log messages in string and writing into "log"file 
+            /// at the end while saving with date and time,
+            /// only one file each program run is generated
             /// don't move the .exe!!!
             StreamWriter logfile = new StreamWriter("../../../Singleton/LogFile" + DateTime.UtcNow.AddHours(1).ToString("yyyyMMdd_HH-mm-ss") + "." + "txt", true);
             logfile.Write(_logData);
