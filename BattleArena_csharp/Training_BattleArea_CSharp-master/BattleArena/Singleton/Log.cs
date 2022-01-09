@@ -17,11 +17,13 @@ namespace BattleArena.Singleton
     {
         private Log() { LogMetaData("Log", "LogInstance"); }
 
-        private string _logData = "";       // use string to log data until generating logfile each program run
-        private string _player = "";        // save name of hero (player) to assign action each log line
-        
+        // Use string to log data until generating logfile each program run.
+        private string _logData = "";
 
-        // lazy initialization; not used
+        // Save name of hero (player) to assign action each log line.
+        private string _player = "";            
+
+        // Lazy initialization; not used.
         private Lazy<Log> _lazyLog = null;
 
         public Lazy<Log> GetInstanceLazy
@@ -37,7 +39,7 @@ namespace BattleArena.Singleton
         }
 
 
-        // static initialization
+        // Static initialization.
         private static Log s_staticLog = new Log();
 
         public static Log GetInstanceStatic
@@ -49,8 +51,9 @@ namespace BattleArena.Singleton
         }
 
         public void LogMetaData(string msg, string category)
-        {            
-            DateTimeOffset timestamp = DateTime.UtcNow.AddHours(1);     // AddHours() to adapt current timezone
+        {
+            // AddHours() to adapt current timezone.
+            DateTimeOffset timestamp = DateTime.UtcNow.AddHours(1);     
 
             if (category == "CreatureInstance")
             {

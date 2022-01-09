@@ -42,7 +42,8 @@ namespace BattleArena
 
                 foreach (Hero currentHero in playerList)
                 {
-                    log.GetPlayerName(currentHero.Name);        // additional information for logging
+                    // Additional information for logging.
+                    log.GetPlayerName(currentHero.Name);        
                     bool action = false;
                     do
                     {
@@ -56,7 +57,7 @@ namespace BattleArena
                         switch (userinput)
                         {
                             case 0:
-                                // exit game
+                                // Exit game.
                                 run = false;
                                 userinteraction.ExitGame();
                                 log.PrintLogFile();
@@ -108,11 +109,11 @@ namespace BattleArena
                         currentHero.UseGoblins(playerList[0]);
                     }
                     
-                    /// get damage to notify and log data
+                    // Get damage to notify and log data.
                     subscriber.GetEnumCompareValue(currentHero.Name, currentHero.Health);
                 }
 
-                // end condition
+                // End condition.
                 if (playerList[0].Health <= 0)
                 {
                     userinteraction.EndGame(playerList[0].Name);
